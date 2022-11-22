@@ -35,18 +35,20 @@ class Piece
     nil
   end
 
-  def left_column
-    letter_index = COLUMNS.find_index(current_column)
-    return if letter_index.nil?
+  def index_of_current_column
+    COLUMNS.find_index(current_column)
+  end
 
-    COLUMNS[letter_index - 1]
+  def left_column
+    return if index_of_current_column.nil?
+
+    COLUMNS[index_of_current_column - 1]
   end
 
   def right_column
-    letter_index = COLUMNS.find_index(current_column)
-    return if letter_index.nil?
+    return if index_of_current_column.nil?
 
-    COLUMNS[letter_index + 1]
+    COLUMNS[index_of_current_column + 1]
   end
 
   def next_row
@@ -59,5 +61,29 @@ class Piece
 
   def row_out_of_bounds?(row)
     row > 8 || row < 1
+  end
+
+  def top_rows_remaining
+    return [] if current_row.zero? || current_row == 8
+
+    (next_row..8).to_a
+  end
+
+  def bottom_rows_remaining
+    return [] if current_row.zero? || current_row == 1
+
+    (1..previous_row).to_a.reverse
+  end
+
+  def left_columns_remaining
+    return [] if current_column.nil? || current_column == 'a'
+
+    COLUMNS[0..(index_of_current_column - 1)]
+  end
+
+  def right_columns_remaining
+    return [] if current_column.nil? || current_column == 'h'
+
+    COLUMNS[(index_of_current_column + 1)..]
   end
 end
