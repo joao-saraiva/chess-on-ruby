@@ -26,5 +26,17 @@ class PawnTest < MiniTest::Test
                    left_moves: ['d3'],
                    right_moves: ['f3']
                  }, @black_pawn.moves)
+
+    @black_pawn.first_move = false
+    @black_pawn.current_position = 'e4'
+
+    assert_equal({
+                   straight_line_moves: %w[e5],
+                   left_moves: ['d5'],
+                   right_moves: ['f5']
+                 }, @black_pawn.moves)
+
+    @black_pawn.current_position = 'e8'
+    assert_equal({ straight_line_moves: [], left_moves: [], right_moves: [] }, @black_pawn.moves)
   end
 end
