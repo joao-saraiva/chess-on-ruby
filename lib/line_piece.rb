@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This class is an abstratcion of piece of chess that can move the entire board at a horizon and vertical line
+# This module is an abstratcion of piece of chess that can move the entire board at a horizon and vertical line
 module LinePiece
   private
 

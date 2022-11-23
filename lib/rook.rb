@@ -3,7 +3,8 @@
 require_relative 'piece'
 require_relative 'line_piece'
 
-# This class is an abstracion of a rook of chess
+# This class is an abstration of a Rook piece in a game of chess.
+# It may be able to map it moves, color, and current position
 class Rook
   include Piece
   include LinePiece

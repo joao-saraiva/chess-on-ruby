@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-# This class represente the abstratcion of a chess board,
-# it can draw the board, validate a play, move a piece
-# and also define the winner
-
 require_relative 'king'
 require_relative 'queen'
 require_relative 'rook'
@@ -11,6 +7,10 @@ require_relative 'bishop'
 require_relative 'knight'
 require_relative 'pawn'
 
+
+# This class represente the abstratcion of a chess board,
+# it can draw the board, validate a play, move a piece
+# and also define the winner
 class ChessBoard
   attr_accessor :board
 
