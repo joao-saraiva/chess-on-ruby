@@ -6,4 +6,10 @@ require_relative 'piece'
 # It may be able to map it moves, color, and current position
 class Bishop
   include Piece
+
+  private 
+
+  def especial_attributes
+    @signature = "B"
+  end
 end

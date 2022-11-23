@@ -26,7 +26,7 @@ class Pawn
   def straight_line_moves
     return [] if current_position.nil? || row_out_of_bounds?(next_row)
 
-    moves = [(current_column + next_row.to_s).to_s]
+    moves = [(current_column + next_row.to_s)]
     moves.push((current_column + (current_row + 2).to_s)) if first_move
 
     moves
