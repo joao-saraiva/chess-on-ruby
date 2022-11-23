@@ -86,4 +86,8 @@ module Piece
 
     COLUMNS[(index_of_current_column + 1)..]
   end
+
+  def construct_movement(column, row)
+    (column + row.to_s)
+  end
 end

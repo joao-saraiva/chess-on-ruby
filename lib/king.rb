@@ -26,17 +26,20 @@ class King
     return [] if row_out_of_bounds?(next_row) || current_column.nil?
 
     moves = [(current_column + next_row.to_s)]
-    moves.push((left_column + next_row.to_s)) unless left_column.nil?
-    moves.push((right_column + next_row.to_s)) unless right_column.nil?
-    moves
+    push_left_and_right_moves(moves, left_column, right_column, next_row)
   end
 
   def bottom_moves
     return [] if row_out_of_bounds?(previous_row) || current_column.nil?
 
     moves = [(current_column + previous_row.to_s)]
-    moves.push((left_column + previous_row.to_s)) unless left_column.nil?
-    moves.push((right_column + previous_row.to_s)) unless right_column.nil?
+    push_left_and_right_moves(moves, left_column, right_column, previous_row)
+  end
+
+  def push_left_and_right_moves(moves, left_column, right_column, row)
+    moves.push((left_column + row.to_s)) unless left_column.nil?
+    moves.push((right_column + row.to_s)) unless right_column.nil?
+
     moves
   end
 
