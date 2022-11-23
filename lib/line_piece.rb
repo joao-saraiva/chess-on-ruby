@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'piece'
-require 'byebug'
-
 # This class is an abstratcion of piece of chess that can move the entire board at a horizon and vertical line
-class LinePiece < Piece
+module LinePiece
   private
 
   def vertical_moves

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This represente the piece class, it contain the minimum attributes to be a chess piece
-class Piece
+module Piece
   attr_accessor :current_position
   attr_reader :color, :signature
 

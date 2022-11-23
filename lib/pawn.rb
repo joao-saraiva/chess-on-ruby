@@ -4,7 +4,8 @@ require_relative 'piece'
 
 # This class represents the abstractions of pawn on a chess game
 # here you can find the pawn avaliables moves, color, and etc...
-class Pawn < Piece
+class Pawn
+  include Piece
   attr_accessor :first_move
 
   def moves

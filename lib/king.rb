@@ -2,7 +2,9 @@
 
 require_relative 'piece'
 
-class King < Piece
+class King
+  include Piece
+
   def moves
     {
       top_moves: top_moves,

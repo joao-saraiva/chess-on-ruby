@@ -2,5 +2,6 @@
 
 require_relative 'piece'
 
-class Bishop < Piece
+class Bishop
+  include Piece
 end

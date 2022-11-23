@@ -2,5 +2,6 @@
 
 require_relative 'piece'
 
-class Queen < Piece
+class Queen
+  include Piece
 end

@@ -2,5 +2,6 @@
 
 require_relative 'piece'
 
-class Knight < Piece
+class Knight
+  include Piece
 end
