@@ -10,16 +10,16 @@ class Bishop
   include DiagonalPiece
   def moves
     {
-      top_left: top_left, 
-      top_right: top_right, 
-      bottom_left: bottom_left, 
+      top_left: top_left,
+      top_right: top_right,
+      bottom_left: bottom_left,
       bottom_right: bottom_right
     }
   end
 
-  private 
+  private
 
   def especial_attributes
-    @signature = "B"
+    @signature = 'B'
   end
 end

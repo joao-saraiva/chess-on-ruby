@@ -32,5 +32,22 @@ class BishopTest < MiniTest::Test
       {top_left: [], top_right: %w[b2 c3 d4 e5 f6 g7 h8], bottom_left: [], bottom_right: [] }, @black_bishop.moves
     )
 
+    @black_bishop.current_position = "h8"
+
+    assert_equal(
+      {top_left: [], top_right: [], bottom_left: %w[g7 f6 e5 d4 c3 b2 a1], bottom_right: []}, @black_bishop.moves
+    )
+
+    @black_bishop.current_position = "a8"
+
+    assert_equal(
+      {top_left: [], top_right: [], bottom_left: [], bottom_right: %w[b7 c6 d5 e4 f3 g2 h1]}, @black_bishop.moves
+    )
+
+    @black_bishop.current_position = "d4"
+
+    assert_equal(
+      {top_left: %w[c5 b6 a7], top_right: %w[e5 f6 g7 h8], bottom_left: %w[c3 b2 a1], bottom_right: %w[e3 f2 g1]}, @black_bishop.moves
+    )
   end
 end
