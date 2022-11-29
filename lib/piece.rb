@@ -39,16 +39,16 @@ module Piece
     COLUMNS.find_index(current_column)
   end
 
-  def left_column
+  def left_column(columns_before = 1)
     return if index_of_current_column.nil?
 
-    COLUMNS[index_of_current_column - 1]
+    COLUMNS[index_of_current_column - columns_before]
   end
 
-  def right_column
+  def right_column(columns_after = 1)
     return if index_of_current_column.nil?
 
-    COLUMNS[index_of_current_column + 1]
+    COLUMNS[index_of_current_column + columns_after]
   end
 
   def next_row
