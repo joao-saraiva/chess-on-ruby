@@ -7,52 +7,62 @@ require_relative 'piece'
 class Knight
   include Piece
   def moves
-    {top_moves: top_moves, bottom_moves: bottom_moves}
+    { top_moves: top_moves, bottom_moves: bottom_moves }
   end
 
   private
 
   def especial_attributes
-    @signature = "N"
+    @signature = 'N'
+  end
+
+  def jump_moves(movement_way)
+    moves = []
+
+    first_row_movements(moves, movement_way)
+    second_row_movements(moves, movement_way)
+
+    moves
+  end
+
+  def first_row(movement_way)
+    movement_way == 'top' ? current_row + 1 : current_row - 1
+  end
+
+  def second_row(movement_way)
+    movement_way == 'top' ? current_row + 2 : current_row - 2
+  end
+
+  def row_is_on_limit?(row, movement_way)
+    return row <= 8 if movement_way == 'top'
+
+    row >= 1
+  end
+
+  def first_row_movements(moves, movement_way)
+    row = first_row(movement_way)
+    return unless row_is_on_limit?(row, movement_way)
+
+    double_left_column = left_column(2)
+    double_right_column = right_column(2)
+
+    moves.push(construct_movement(double_left_column, row)) unless double_left_column.nil?
+    moves.push(construct_movement(double_right_column, row)) unless double_right_column.nil?
+  end
+
+  def second_row_movements(moves, movement_way)
+    row = second_row(movement_way)
+    return unless row_is_on_limit?(row, movement_way)
+
+    moves.push(construct_movement(left_column, row)) unless left_column.nil?
+    moves.push(construct_movement(right_column, row)) unless right_column.nil?
   end
 
   def top_moves
-    return [] if current_row == 8
-    moves = []
-
-    top_row = current_row + 1
-    double_top_row = current_row + 2
-
-    if top_row <= 8
-      moves.push(construct_movement(left_column(2), top_row)) unless left_column(2).nil?
-      moves.push(construct_movement(right_column(2), top_row)) unless right_column(2).nil?
-    end
-
-    if double_top_row <= 8
-      moves.push(construct_movement(left_column, double_top_row)) unless left_column.nil?
-      moves.push(construct_movement(right_column, double_top_row)) unless right_column.nil?
-    end
-
-    moves
+    jump_moves('top')
   end
 
   def bottom_moves
-    return [] if current_row == 1
-    moves = []
-
-    bottom_row = current_row - 1
-    double_bottom_row = current_row - 2
-
-    if bottom_row >= 1
-      moves.push(construct_movement(left_column(2), bottom_row)) unless left_column(2).nil?
-      moves.push(construct_movement(right_column(2), bottom_row)) unless right_column(2).nil?
-    end
-
-    if double_bottom_row >= 1
-      moves.push(construct_movement(left_column, double_bottom_row)) unless left_column.nil?
-      moves.push(construct_movement(right_column, double_bottom_row)) unless right_column.nil?
-    end
-
-    moves
+    jump_moves('bottom')
   end
 end
