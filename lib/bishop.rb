@@ -8,6 +8,11 @@ require_relative 'piece'
 class Bishop
   include Piece
   include DiagonalPiece
+
+  def to_s
+    color == "black" ? "♗" : "♝"
+  end
+
   def moves
     (top_left + top_right + bottom_left + bottom_right).sort
   end

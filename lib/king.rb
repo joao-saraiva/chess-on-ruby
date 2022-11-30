@@ -8,8 +8,16 @@ require 'byebug'
 class King
   include Piece
 
+  def to_s
+    color == "black" ? "♔" : "♚"
+  end
+
   def moves
     (top_moves + bottom_moves + left_moves + right_moves).sort
+  end
+
+  def king_on_check?
+    move_puts_on_check?(current_position)
   end
 
   private
@@ -54,7 +62,7 @@ class King
   end
 
   def move_puts_on_check?(king_move)
-    enemy_pieces.each do |piece|
+    enemy_pieces.reject{ |piece| piece.signature == "K" }.each do |piece|
       moves = piece.is_a?(Pawn) ? piece.attacking_moves : piece.moves
       moves.each do |move|
         return true if move == king_move

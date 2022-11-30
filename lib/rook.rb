@@ -9,6 +9,10 @@ class Rook
   include Piece
   include LinePiece
 
+  def to_s
+    color == "black" ? "♖" : "♜"
+  end
+
   def moves
     (vertical_moves + horizontal_moves).uniq.sort
   end

@@ -29,4 +29,8 @@ class ChessBoardTest < MiniTest::Test
       }, @chess_board.board
     )
   end
+
+  def test_draw_board
+    assert_equal("dasjdksa", @chess_board.draw_board)
+  end
 end

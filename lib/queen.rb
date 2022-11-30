@@ -11,6 +11,10 @@ class Queen
   include DiagonalPiece
   include LinePiece
 
+  def to_s
+    color == "black" ? "♕" : "♛"
+  end
+
   def moves
     (vertical_moves + horizontal_moves + top_left + top_right + bottom_left + bottom_right).sort
   end

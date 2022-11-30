@@ -8,6 +8,10 @@ class Pawn
   include Piece
   attr_accessor :first_move
 
+  def to_s
+    color == "black" ? "♙" : "♟" 
+  end
+
   def moves
     (straight_line_moves + left_moves + right_moves).uniq.sort
   end

@@ -6,6 +6,11 @@ require_relative 'piece'
 # It may be able to map it moves, color, and current position
 class Knight
   include Piece
+
+  def to_s
+    color == "black" ?  "♘" : "♞"
+  end
+
   def moves
     (top_moves + bottom_moves).sort
   end
