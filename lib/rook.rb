@@ -10,10 +10,7 @@ class Rook
   include LinePiece
 
   def moves
-    {
-      vertical_moves: vertical_moves,
-      horizontal_moves: horizontal_moves
-    }
+    (vertical_moves + horizontal_moves).uniq.sort
   end
 
   private
