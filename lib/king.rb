@@ -9,12 +9,7 @@ class King
   include Piece
 
   def moves
-    {
-      top_moves: top_moves,
-      bottom_moves: bottom_moves,
-      left_moves: left_moves,
-      right_moves: right_moves
-    }
+    (top_moves + bottom_moves + left_moves + right_moves).sort
   end
 
   private
@@ -59,17 +54,14 @@ class King
   end
 
   def move_puts_on_check?(king_move)
-    puts_on_check = false
-
     enemy_pieces.each do |piece|
-      piece.moves.each do |_key, moves|
-        puts_on_check = moves.any? { |piece_move| piece_move == king_move }
-        break if puts_on_check
+      moves = piece.is_a?(Pawn) ? piece.attacking_moves : piece.moves
+      moves.each do |move|
+        return true if move == king_move
       end
-
-      break if puts_on_check
     end
-    puts_on_check
+
+    false
   end
 
   def move_avaliable?(move)

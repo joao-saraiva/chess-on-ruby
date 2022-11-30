@@ -12,6 +12,15 @@ class Pawn
     (straight_line_moves + left_moves + right_moves).uniq.sort
   end
 
+  def attacking_moves
+    moves = []
+
+    moves.push((left_column + next_row_by_color.to_s).to_s) unless left_column.nil?
+    moves.push((right_column + next_row_by_color.to_s).to_s) unless right_column.nil?
+
+    moves
+  end
+
   private
 
   def especial_attributes
