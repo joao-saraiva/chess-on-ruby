@@ -7,7 +7,7 @@ require_relative 'piece'
 class Knight
   include Piece
   def moves
-    { top_moves: top_moves, bottom_moves: bottom_moves }
+    (top_moves + bottom_moves).sort
   end
 
   private
@@ -46,16 +46,29 @@ class Knight
     double_left_column = left_column(2)
     double_right_column = right_column(2)
 
-    moves.push(construct_movement(double_left_column, row)) unless double_left_column.nil?
-    moves.push(construct_movement(double_right_column, row)) unless double_right_column.nil?
+    unless double_left_column.nil?
+      move = construct_movement(double_left_column, row)
+      moves.push(move) unless ally_piece_blocking_move?(move)
+    end
+
+    return if double_right_column.nil?
+
+    move = construct_movement(double_right_column, row)
+    moves.push(move) unless ally_piece_blocking_move?(move)
   end
 
   def second_row_movements(moves, movement_way)
     row = second_row(movement_way)
     return unless row_is_on_limit?(row, movement_way)
 
-    moves.push(construct_movement(left_column, row)) unless left_column.nil?
-    moves.push(construct_movement(right_column, row)) unless right_column.nil?
+    unless left_column.nil?
+      move = construct_movement(left_column, row)
+      moves.push(move) unless ally_piece_blocking_move?(move)
+    end
+    return if right_column.nil?
+
+    move = construct_movement(right_column, row)
+    moves.push(move) unless ally_piece_blocking_move?(move)
   end
 
   def top_moves

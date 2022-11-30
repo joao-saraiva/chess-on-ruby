@@ -104,11 +104,19 @@ module Piece
     @board.pieces.reject { |piece| piece == self }
   end
 
+  def ally_pieces
+    other_pieces.select { |piece| piece.color == color }
+  end
+
   def enemy_pieces
     other_pieces.reject { |piece| piece.color == color }
   end
 
   def enemy_piece_blocking_move?(move)
     enemy_pieces.any? { |piece| piece.current_position == move }
+  end
+
+  def ally_piece_blocking_move?(move)
+    ally_pieces.any? { |piece| piece.current_position == move }
   end
 end
