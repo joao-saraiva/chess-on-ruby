@@ -9,7 +9,7 @@ class King
   include Piece
 
   def to_s
-    color == "black" ? "♔" : "♚"
+    color == 'black' ? '♔' : '♚'
   end
 
   def moves
@@ -62,7 +62,7 @@ class King
   end
 
   def move_puts_on_check?(king_move)
-    enemy_pieces.reject{ |piece| piece.signature == "K" }.each do |piece|
+    enemy_pieces.reject { |piece| piece.signature == 'K' }.each do |piece|
       moves = piece.is_a?(Pawn) ? piece.attacking_moves : piece.moves
       moves.each do |move|
         return true if move == king_move

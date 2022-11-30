@@ -12,7 +12,7 @@ class Queen
   include LinePiece
 
   def to_s
-    color == "black" ? "♕" : "♛"
+    color == 'black' ? '♕' : '♛'
   end
 
   def moves

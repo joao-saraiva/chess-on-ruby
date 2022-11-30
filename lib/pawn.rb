@@ -9,7 +9,7 @@ class Pawn
   attr_accessor :first_move
 
   def to_s
-    color == "black" ? "♙" : "♟" 
+    color == 'black' ? '♙' : '♟'
   end
 
   def moves

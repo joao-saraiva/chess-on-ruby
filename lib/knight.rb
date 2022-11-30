@@ -8,7 +8,7 @@ class Knight
   include Piece
 
   def to_s
-    color == "black" ?  "♘" : "♞"
+    color == 'black' ? '♘' : '♞'
   end
 
   def moves

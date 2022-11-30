@@ -64,7 +64,8 @@ class ChessBoard
   end
 
   def selected_piece_on_turn?
-    raise "This is not your piece" if  selected_piece.color != @turn
+    raise 'This is not your piece' if selected_piece.color != @turn
+
     true
   end
 
@@ -73,9 +74,9 @@ class ChessBoard
   end
 
   def draw_board(with_options = [])
-    draw = ""
+    draw = ''
 
-    draw << "     a   b   c   d   e   f   g   h "
+    draw << '     a   b   c   d   e   f   g   h '
     draw << "\n "
 
     @board.each do |key, value|
@@ -85,20 +86,20 @@ class ChessBoard
 
       draw << " #{formated_key[1]} | " if first_column
 
-      if value.nil?
-        if with_options.include?(formated_key)
-          draw << "° | "
-        else
-          draw << "  | "
-        end
-      else
-        draw << "#{value.to_s} | "
-      end
+      draw << if value.nil?
+                if with_options.include?(formated_key)
+                  '° | '
+                else
+                  '  | '
+                end
+              else
+                "#{value} | "
+              end
 
       draw << "\n " if last_column
     end
 
-    draw << "     a   b   c   d   e   f   g   h "
+    draw << '     a   b   c   d   e   f   g   h '
   end
 
   def over?
@@ -112,19 +113,20 @@ class ChessBoard
 
     if current_king.king_on_check?
       current_king.current_position = old_position
-      raise "Your king is on check"
+      raise 'Your king is on check'
     end
 
     current_king.current_position = old_position
   end
 
   private
+
   def remove_pawn_first_move
     selected_piece.first_move = false
   end
 
   def current_king
-    @pieces.detect { |piece| piece.signature == "K" && piece.color == @turn }
+    @pieces.detect { |piece| piece.signature == 'K' && piece.color == @turn }
   end
 
   def clean_selected_position
@@ -133,7 +135,7 @@ class ChessBoard
   end
 
   def switch_turn
-    @turn = @turn == "white" ? "black" : "white"
+    @turn = @turn == 'white' ? 'black' : 'white'
   end
 
   def instance_board_on_pieces
