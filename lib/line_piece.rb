@@ -41,7 +41,7 @@ module LinePiece
   def horizontal_moves
     remaining_columns = []
 
-    columns_until_first_piece_block(remaining_columns, left_columns_remaining)
+    columns_until_first_piece_block(remaining_columns, left_columns_remaining.reverse)
     columns_until_first_piece_block(remaining_columns, right_columns_remaining)
 
     remaining_columns

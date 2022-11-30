@@ -73,6 +73,6 @@ class King
   end
 
   def move_avaliable?(move)
-    !piece_blocking_move?(move) && !move_puts_on_check?(move)
+    !ally_piece_blocking_move?(move) && !move_puts_on_check?(move)
   end
 end
