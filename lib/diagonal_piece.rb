@@ -5,25 +5,37 @@
 module DiagonalPiece
   private
 
+  def moves_until_first_piece(moves, rows, columns)
+    rows.each_with_index do |row, index|
+      column = columns[index].to_s
+      move = construct_movement(column, row)
+
+      if piece_blocking_move?(move)
+        moves.push(move) if enemy_piece_blocking_move?(move)
+        break
+      end
+
+      moves.push(construct_movement(column, row))
+    end
+
+    moves
+  end
+
+  def diagonal_moves(rows_remaining, columns)
+    return [] if rows_remaining.size.zero? || columns.size.zero?
+
+    moves = []
+
+    moves_until_first_piece(moves, rows_remaining, columns)
+    moves.select { |m| m =~ /[a-z]\d/ }
+  end
+
   def top_left
     diagonal_moves(top_rows_remaining, left_columns_remaining.reverse)
   end
 
   def top_right
     diagonal_moves(top_rows_remaining, right_columns_remaining)
-  end
-
-  def diagonal_moves(top_rows, columns)
-    return [] if top_rows.size.zero? || columns.size.zero?
-
-    moves = []
-
-    top_rows.each_with_index do |row, index|
-      column = columns[index].to_s
-      moves.push(construct_movement(column, row))
-    end
-
-    moves.select { |m| m =~ /[a-z]\d/ }
   end
 
   def bottom_left
@@ -33,6 +45,4 @@ module DiagonalPiece
   def bottom_right
     diagonal_moves(bottom_rows_remaining, right_columns_remaining)
   end
-
-  def diagonal_inferior; end
 end
