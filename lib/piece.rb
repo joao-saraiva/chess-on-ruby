@@ -2,14 +2,15 @@
 
 # This represente the piece module, it contain the minimum attributes to be a chess piece
 module Piece
-  attr_accessor :current_position
+  attr_accessor :current_position, :board
   attr_reader :color, :signature
 
   COLUMNS = %w[a b c d e f g h].freeze
 
-  def initialize(color)
+  def initialize(color, current_position = nil)
     @color = color
     @first_move = true
+    @current_position = current_position
 
     especial_attributes
   end
@@ -19,6 +20,10 @@ module Piece
   end
 
   private
+
+  def captured?
+    current_position.nil?
+  end
 
   # Use this method in other class if your piece need an extra attribute
   def especial_attributes; end
@@ -89,5 +94,21 @@ module Piece
 
   def construct_movement(column, row)
     (column + row.to_s)
+  end
+
+  def piece_blocking_move?(move)
+    other_pieces.any? { |piece| piece.current_position == move }
+  end
+
+  def other_pieces
+    @board.pieces.reject { |piece| piece == self }
+  end
+
+  def enemy_pieces
+    other_pieces.reject { |piece| piece.color == color }
+  end
+
+  def enemy_piece_blocking_move?(move)
+    enemy_pieces.any? { |piece| piece.current_position == move }
   end
 end

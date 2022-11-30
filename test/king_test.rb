@@ -3,16 +3,18 @@
 require 'minitest/autorun'
 require 'byebug'
 require_relative '../lib/king'
+require_relative '../lib/chess_board'
 
 class KingTest < MiniTest::Test
   def setup
-    @black_king = King.new('black')
+    @chess_board = ChessBoard.new
+    @black_king = @chess_board.board[:e8]
   end
 
   def test_king_assignment
     assert_equal 'K', @black_king.signature
     assert_equal 'black', @black_king.color
-    assert_nil @black_king.current_position
+    assert_equal 'e8', @black_king.current_position
   end
 
   def test_moves
