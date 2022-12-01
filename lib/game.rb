@@ -35,6 +35,6 @@ until @chess_board.over?
   end
 end
 
-puts @chess.draw_board
+puts @chess_board.draw_board
 
 puts 'End of the game'

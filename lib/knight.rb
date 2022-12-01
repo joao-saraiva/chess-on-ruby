@@ -53,13 +53,13 @@ class Knight
 
     unless double_left_column.nil?
       move = construct_movement(double_left_column, row)
-      moves.push(move) unless ally_piece_blocking_move?(move)
+      moves.push(move) 
     end
 
     return if double_right_column.nil?
 
     move = construct_movement(double_right_column, row)
-    moves.push(move) unless ally_piece_blocking_move?(move)
+    moves.push(move) 
   end
 
   def second_row_movements(moves, movement_way)
@@ -68,12 +68,12 @@ class Knight
 
     unless left_column.nil?
       move = construct_movement(left_column, row)
-      moves.push(move) unless ally_piece_blocking_move?(move)
+      moves.push(move) 
     end
     return if right_column.nil?
 
     move = construct_movement(right_column, row)
-    moves.push(move) unless ally_piece_blocking_move?(move)
+    moves.push(move) 
   end
 
   def top_moves
