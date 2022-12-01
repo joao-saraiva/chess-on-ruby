@@ -19,6 +19,10 @@ module Piece
     color == other.color && @signature == other.signature && current_position == other.current_position
   end
 
+  def ally_pieces
+    other_pieces.select { |piece| piece.color == color }
+  end
+
   private
 
   def captured?
@@ -102,10 +106,6 @@ module Piece
 
   def other_pieces
     @board.pieces.reject { |piece| piece == self }
-  end
-
-  def ally_pieces
-    other_pieces.select { |piece| piece.color == color }
   end
 
   def enemy_pieces

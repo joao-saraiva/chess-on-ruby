@@ -21,7 +21,10 @@ until @chess_board.over?
 
     raise 'Move is not avaliable' unless @chess_board.selected_piece_avaliable_moves.include?(new_position)
 
-    @chess_board.king_still_on_check_with_move?(new_position) if @chess_board.king_on_check?
+    if @chess_board.king_on_check? && @chess_board.king_still_on_check_with_move?(@chess_board.selected_piece,
+                                                                                  new_position)
+      raise 'Your King is on check'
+    end
 
     system 'clear'
     @chess_board.move_piece(new_position)
@@ -31,3 +34,7 @@ until @chess_board.over?
     next
   end
 end
+
+puts @chess.draw_board
+
+puts 'End of the game'

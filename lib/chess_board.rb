@@ -103,26 +103,34 @@ class ChessBoard
   end
 
   def over?
-    false
+    return false unless king_on_check?
+
+    current_king.ally_pieces.push(current_king).each do |ally_piece|
+      moves = ally_piece.is_a?(Pawn) ? ally_piece.attacking_moves : ally_piece.moves
+      return false if moves.any? { |move| !king_still_on_check_with_move?(ally_piece, move) }
+    end
+
+    true
   end
 
-  def king_still_on_check_with_move?(move)
-    old_position = selected_piece.current_position
+  def king_still_on_check_with_move?(piece, move)
+    old_position = piece.current_position
 
-    selected_piece.current_position = move
+    piece.current_position = move
 
-    if selected_piece != current_king
+    if piece != current_king
       enemy_piece_treat = @board[move.to_sym]
       enemy_piece_treat.current_position = nil unless enemy_piece_treat.nil?
     end
 
     if current_king.king_on_check?
-      selected_piece.current_position = old_position
-      enemy_piece_treat.current_position = move if defined?(enemy_piece_treat)
-      raise 'Your king is on check'
+      piece.current_position = old_position
+      enemy_piece_treat.current_position = move if defined?(enemy_piece_treat) && !enemy_piece_treat.nil?
+      return true
     end
 
-    selected_piece.current_position = old_position
+    piece.current_position = old_position
+    false
   end
 
   def selected_piece_exist?
