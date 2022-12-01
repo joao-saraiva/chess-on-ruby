@@ -122,7 +122,13 @@ class ChessBoard
   def selected_piece_exist?
     return true unless selected_piece.nil?
 
-    raise "This place is empty, please select again"
+    raise 'This place is empty, please select again'
+  end
+
+  def validate_play
+    selected_piece_exist?
+    position_formated_correctly?
+    selected_piece_on_turn?
   end
 
   private

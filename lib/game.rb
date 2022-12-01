@@ -7,18 +7,15 @@ require 'byebug'
 
 until @chess_board.over?
   puts @chess_board.draw_board
-
   puts 'Select a piece'
-  selected_position = gets.chomp
 
-  @chess_board.selected_position = selected_position
+  @chess_board.selected_position = gets.chomp
+
   begin
-    @chess_board.selected_piece_exist?
-    @chess_board.position_formated_correctly?
-    @chess_board.selected_piece_on_turn?
-
+    @chess_board.validate_play
     system 'clear'
     puts @chess_board.draw_board(@chess_board.selected_piece_avaliable_moves)
+
     puts 'Select a move'
     new_position = gets.chomp
 
