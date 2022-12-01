@@ -119,6 +119,12 @@ class ChessBoard
     current_king.current_position = old_position
   end
 
+  def selected_piece_exist?
+    return true unless selected_piece.nil?
+
+    raise "This place is empty, please select again"
+  end
+
   private
 
   def remove_pawn_first_move

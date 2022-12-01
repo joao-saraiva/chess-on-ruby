@@ -13,6 +13,7 @@ until @chess_board.over?
 
   @chess_board.selected_position = selected_position
   begin
+    @chess_board.selected_piece_exist?
     @chess_board.position_formated_correctly?
     @chess_board.selected_piece_on_turn?
 
