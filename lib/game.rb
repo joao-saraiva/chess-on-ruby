@@ -21,10 +21,7 @@ until @chess_board.over?
 
     raise 'Move is not avaliable' unless @chess_board.selected_piece_avaliable_moves.include?(new_position)
 
-    if @chess_board.king_on_check?
-      player_is_moving_the_king = @chess_board.selected_piece.signature == 'K'
-      @chess_board.king_still_on_check_with_move?(player_is_moving_the_king ? new_position : nil)
-    end
+    @chess_board.king_still_on_check_with_move?(new_position) if @chess_board.king_on_check?
 
     system 'clear'
     @chess_board.move_piece(new_position)

@@ -106,17 +106,23 @@ class ChessBoard
     false
   end
 
-  def king_still_on_check_with_move?(move = nil)
-    old_position = current_king.current_position
+  def king_still_on_check_with_move?(move)
+    old_position = selected_piece.current_position
 
-    current_king.current_position = move.nil? ? old_position : move
+    selected_piece.current_position = move
+
+    if selected_piece != current_king
+      enemy_piece_treat = @board[move.to_sym]
+      enemy_piece_treat.current_position = nil unless enemy_piece_treat.nil?
+    end
 
     if current_king.king_on_check?
-      current_king.current_position = old_position
+      selected_piece.current_position = old_position
+      enemy_piece_treat.current_position = move if defined?(enemy_piece_treat)
       raise 'Your king is on check'
     end
 
-    current_king.current_position = old_position
+    selected_piece.current_position = old_position
   end
 
   def selected_piece_exist?
