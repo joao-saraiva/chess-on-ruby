@@ -19,6 +19,9 @@ bash run-test.sh
 You need to know chess rules, so whites plays first, so you need to select your piece, to select a piece you need to past the position with this format: "e4", so first its a letter between [a-h] and then a number between [1-9], so if i want to move tha white pawn in the front of the king i should type in my terminal this command 
 ``
 Select your piece
+``
+
+``
 e4
 ``
 
@@ -26,6 +29,9 @@ After that you need to move your piece into a position, to select a position you
 terminal this command 
 ``
 Select your move
+``
+
+``
 e6
 ``
 
