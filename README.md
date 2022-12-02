@@ -34,5 +34,6 @@ Select your move
 ``
 e6
 ``
+<br />
 
-ANIMATED GIF
+![](https://github.com/joao-saraiva/chess-on-ruby/blob/master/final.gif)
